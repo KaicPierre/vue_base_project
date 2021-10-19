@@ -6,6 +6,7 @@ import store from './app/store'
 import vuetify from './plugins/vuetify'
 import { ValidationProvider, ValidationObserver } from './plugins/veeValidation'
 
+
 Vue.config.productionTip = false
 
 Vue.component('ValidationObserver', ValidationObserver);
