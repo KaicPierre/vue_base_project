@@ -14,7 +14,7 @@
         <h1 class="font-weight-light">Default Project</h1>
       </v-col>
       <v-col class="text-center login" cols="8">
-        <h2 class="mb-15 font-weight-light">Login</h2>
+        <h2 class="my-5 font-weight-light">Login</h2>
         <ValidationObserver ref="form" v-slot="{ handleSubmit }">
           <v-form lazy-validation @submit.prevent="handleSubmit(logar)">
             <ValidationProvider rules="required" v-slot="{ errors }">
@@ -42,11 +42,13 @@
               ></v-text-field>
             </ValidationProvider>
 
-            <v-btn class="mt-15" large type="submit">
-              <span class="d-flex align-center">
-                <v-icon class="mr-2"> {{ icons.mdiLogin }} </v-icon>
-                Logar
-              </span>
+            <v-btn class="my-5" large type="submit">
+              
+                <span class="d-flex align-center">
+                  <v-icon class="mr-2"> {{ icons.mdiLogin }} </v-icon>
+                  Logar
+                </span>
+              
             </v-btn>
           </v-form>
         </ValidationObserver>
@@ -65,21 +67,22 @@ export default {
       icons: {
         mdiAccount,
         mdiLock,
-        mdiLogin,
+        mdiLogin
       },
       user: {
         user: "",
-        password: "",
+        password: ""
       },
-      loading: false,
+      loading: false
     };
   },
 
   methods: {
     logar() {
       console.log("logado");
-    },
-  },
+      this.$router.push({name: "Home"})
+    }
+  }
 };
 </script>
 
@@ -90,6 +93,6 @@ export default {
 
 .login {
   border-radius: 20px;
-  box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.2);
+  box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
 }
 </style>
