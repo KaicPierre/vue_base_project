@@ -6,13 +6,24 @@
         src="https://source.unsplash.com/random/1920x1080"
       ></v-img>
     </v-col>
+
     <v-col
       class="fullscreen d-flex align-start justify-center flex-wrap"
       cols="6"
     >
-      <v-col cols="12" class="text-center">
+      <v-col cols="10">
         <h1 class="font-weight-light">Default Project</h1>
       </v-col>
+      <v-spacer></v-spacer>
+      <v-switch
+        v-model="darkTheme"
+        @change="changeTheme()"
+        dense
+        :prepend-icon="icons.mdiWhiteBalanceSunny"
+        :append-icon="icons.mdiMoonWaningCrescent"
+        color="red lighten-1"
+      ></v-switch>
+
       <v-col class="text-center login" cols="8">
         <h2 class="my-5 font-weight-light">Login</h2>
         <ValidationObserver ref="form" v-slot="{ handleSubmit }">
@@ -23,6 +34,7 @@
                 class="rounded-lg"
                 filled
                 solo
+                color="purple lighten-1"
                 :append-icon="icons.mdiAccount"
                 :error-messages="errors[0]"
                 label="Usuario"
@@ -35,6 +47,7 @@
                 class="rounded-lg"
                 solo
                 filled
+                color="purple lighten-1"
                 :append-icon="icons.mdiLock"
                 :error-messages="errors[0]"
                 label="Senha"
@@ -42,13 +55,11 @@
               ></v-text-field>
             </ValidationProvider>
 
-            <v-btn class="my-5" large type="submit">
-              
-                <span class="d-flex align-center">
-                  <v-icon class="mr-2"> {{ icons.mdiLogin }} </v-icon>
-                  Logar
-                </span>
-              
+            <v-btn class="my-5 red lighten-1" large type="submit">
+              <span class="d-flex align-center">
+                <v-icon class="mr-2"> {{ icons.mdiLogin }} </v-icon>
+                Logar
+              </span>
             </v-btn>
           </v-form>
         </ValidationObserver>
@@ -60,28 +71,55 @@
 <script>
 /* eslint-disable */
 
-import { mdiAccount, mdiLock, mdiLogin } from "@mdi/js";
+import {
+  mdiAccount,
+  mdiLock,
+  mdiLogin,
+  mdiWhiteBalanceSunny,
+  mdiMoonWaningCrescent
+} from "@mdi/js";
 export default {
   data() {
     return {
       icons: {
         mdiAccount,
         mdiLock,
-        mdiLogin
+        mdiLogin,
+        mdiWhiteBalanceSunny,
+        mdiMoonWaningCrescent
       },
       user: {
         user: "",
         password: ""
       },
-      loading: false
+      loading: false,
+      darkTheme: ""
     };
   },
 
   methods: {
     logar() {
       console.log("logado");
-      this.$router.push({name: "Home"})
+      this.$router.push({ name: "Home" });
+    },
+    changeTheme() {
+      localStorage.setItem("dark", this.darkTheme);
+      if (localStorage.getItem("dark") == "true") {
+        this.$vuetify.theme.dark = true;
+      } else {
+        this.$vuetify.theme.dark = false;
+      }
     }
+  },
+  created() {
+    
+    if (localStorage.getItem("dark") == "true") {
+        this.$vuetify.theme.dark = true;
+        this.darkTheme = true
+      } else {
+        this.$vuetify.theme.dark = false;
+        this.darkTheme = false
+      };
   }
 };
 </script>
@@ -93,6 +131,6 @@ export default {
 
 .login {
   border-radius: 20px;
-  box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
+  box-shadow: 0px 0px 10px rgba(88, 88, 88, 0.4);
 }
 </style>
