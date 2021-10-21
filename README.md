@@ -1,4 +1,4 @@
-# app_models
+# Vue Base Project
 
 ## Project setup
 ```
