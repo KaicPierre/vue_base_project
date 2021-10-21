@@ -1,6 +1,6 @@
 <template>
   <div class="fullscreen d-flex">
-    <v-col class="fullscreen ma-0 pa-0" cols="6">
+    <v-col v-if="$vuetify.breakpoint.mdAndUp" class="fullscreen ma-0 pa-0" cols="6">
       <v-img
         class="fullscreen"
         src="https://source.unsplash.com/random/1920x1080"
@@ -9,22 +9,22 @@
 
     <v-col
       class="fullscreen d-flex align-start justify-center flex-wrap"
-      cols="6"
+      cols="12" md="6"
     >
-      <v-col cols="10">
+      <v-col cols="6" >
         <h1 class="font-weight-light">Default Project</h1>
       </v-col>
       <v-spacer></v-spacer>
       <v-switch
         v-model="darkTheme"
         @change="changeTheme()"
-        dense
         :prepend-icon="icons.mdiWhiteBalanceSunny"
         :append-icon="icons.mdiMoonWaningCrescent"
         color="red lighten-1"
       ></v-switch>
 
-      <v-col class="text-center login" cols="8">
+      <v-col class="text-center login" lg="8" cols="10">
+        
         <h2 class="my-5 font-weight-light">Login</h2>
         <ValidationObserver ref="form" v-slot="{ handleSubmit }">
           <v-form lazy-validation @submit.prevent="handleSubmit(logar)">
@@ -120,7 +120,7 @@ export default {
         this.$vuetify.theme.dark = false;
         this.darkTheme = false
       };
-  }
+  },
 };
 </script>
 

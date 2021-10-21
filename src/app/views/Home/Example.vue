@@ -1,16 +1,10 @@
 <template>
-  <v-container>
+  <div>
+    <AppBar/>
     App model
-    <!-- <ValidationObserver ref="form" v-slot="{ handleSubmit }">
-      <v-form lazy-validation @submit.prevent="handleSubmit(teste)">
-        <ValidationProvider>
-          <v-text-field label="Teste"></v-text-field>
-        </ValidationProvider>
+    
 
-        <v-btn type="submit">Teste</v-btn>
-      </v-form>
-    </ValidationObserver> -->
-  </v-container>
+  </div>
 </template>
 
 <script>
@@ -19,10 +13,8 @@ export default {
   data() {
     return {};
   },
-  methods: {
-    teste() {
-      console.log("teste");
-    }
+  components: {
+    AppBar: () => import("../../components/AppBar.vue")
   }
 };
 </script>
